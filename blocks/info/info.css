@@ -1,0 +1,9 @@
+.info {
+    max-width: 336px;
+    height: 73px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    
+}

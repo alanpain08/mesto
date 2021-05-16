@@ -1,0 +1,7 @@
+.element__li {
+    display: flex;
+    width: 240px;
+    justify-content: space-between;
+    margin: 25px auto 31px;
+    text-align: end;
+}

@@ -1,9 +1,9 @@
 .elements {
     max-width: 880px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minma(min-content, max-content));
+    grid-template-columns: repeat(3, minmax(min-content, max-content));
     grid-template-rows: auto;
     gap: 20px 17px;
-    background: #FFFFFF;
+   
     border-radius: 10px;
 }

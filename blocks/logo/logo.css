@@ -2,7 +2,8 @@
    max-width: 142px;
    height: 33px;
    background-image: url(../../images/Vector.svg);
-   background-size: cover;
+   background-size: contain;
+   background-repeat: no-repeat;
 }
 
 .logo:hover {

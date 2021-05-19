@@ -1,0 +1,8 @@
+.popup__name {
+    max-width: 358px;
+    padding: 0;
+    color: black;
+    font-size: 14px;
+    line-height: 1.21;
+    border: 0;
+}

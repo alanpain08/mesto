@@ -5,5 +5,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
-    
+}
+
+@media screen and (max-width: 430px) {
+  .info {
+    width: 100%;
+    justify-content: center;
+  }
 }

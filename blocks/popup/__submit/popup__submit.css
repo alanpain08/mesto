@@ -7,3 +7,15 @@
     background-color: black;
     color: white;
 }
+
+.popup__submit:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__submit {
+    width: 100%;
+    height: 46px;
+  }
+}

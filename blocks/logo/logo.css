@@ -1,5 +1,5 @@
 .logo {
-   max-width: 142px;
+   max-width: 143px;
    height: 33px;
    background-image: url(../../images/Vector.svg);
    background-size: contain;
@@ -12,7 +12,7 @@
 
 @media screen and (max-width: 630px) {
   .logo {
-    max-width: 122px;
+    max-width: 124px;
 }
 }
 

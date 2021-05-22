@@ -1,4 +1,4 @@
-.info__edit {
+.info__edit-button {
     padding: 0;
     width: 24px;
     height: 24px;
@@ -9,16 +9,16 @@
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
     background-color: black;
-    align-self: flex-end;
     cursor: pointer;
+    margin-left: 18px;
 }
 
-.info__edit:hover {
+.info__edit-button:hover {
     opacity: .6;
 }
 
 @media screen and (max-width: 430px) {
-  .info__edit {
+  .info__edit-button {
     padding: 0;
     width: 18px;
     height: 18px;

@@ -14,33 +14,19 @@
           <div class="line"></div>
         </header>
 
-        <section class="popup">
-          <div class="popup__container">
-            <button type="button" class="popup__close"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <div class="popup__li">
-              <input type="text" placeholder="Имя" class="popup__name" value="Жак-Ив Кусто">
-              <div class="popup__line"></div>
-            </div>
-            <div class="popup__li">
-              <input type="text" placeholder="О себе" class="popup__about" value="Исследователь океана">
-              <div class="popup__line"></div>
-            </div>
-              <button type="submit" class="popup__submit">Сохранить</button>
-          </div>
-        </section>
-
-        <main class="content">
+         <main class="content">
             <section class="profile">
                 <div class="avatar">
                   <img class="avatar__image" src="./images/avatar.jpg" alt="аватар">
                 </div>
                 <div class="info profile__info">
-                  <h1 class="info__name">Жак-Ив Кусто</h1>
-                  <button type="button" class="info__edit"></button>
+                  <div class="info__edit-li">
+                    <h1 class="info__name">Жак-Ив Кусто</h1>
+                    <button type="button" class="info__edit-button"></button>
+                  </div>
                   <p class="info__about">Исследователь океана</p>
                 </div>
-                <button type="button" class="info__add"></button>
+                <button type="button" class="info__add-button"></button>
             </section>
 
             <section class="elements page__elements">
@@ -95,6 +81,25 @@
           </p>
         </footer>
     </div>
+
+    <section class="popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form">
+          <div class="popup__li">
+            <input type="text" placeholder="Имя" class="popup__name">
+            <div class="popup__line"></div>
+          </div>
+          <div class="popup__li">
+            <input type="text" placeholder="О себе" class="popup__about">
+            <div class="popup__line"></div>
+          </div>
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+    </div>
+    </section>
+
   <script src="./scripts/main.js"></script>
 </body>
 </html>

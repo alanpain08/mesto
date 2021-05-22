@@ -7,8 +7,8 @@
     padding: 0;
     border: transparent;
     position: absolute;
-    top: 147px;
-    right: 377px;
+    top: -43px;
+    right: -43px;
 }
 
 .popup__close:hover {
@@ -20,7 +20,7 @@
   .popup__close {
     width: 26px;
     height: 26px;
-    top: 72px;
-    right: 18px;
+    top: -43px;
+    right: 8px;
   }
 }

@@ -6,10 +6,6 @@
   justify-content: space-between;
 }
 
-.popup__li:nth-child(1) {
-  margin-bottom: 30px;
-}
-
 @media screen and (max-width: 520px) {
   .popup__li {
     max-width: 238px;

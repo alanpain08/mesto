@@ -1,4 +1,4 @@
-.info__add {
+.profile__add-button {
     padding: 0;
     width: 150px;
     height: 50px;
@@ -13,7 +13,7 @@
     margin-left: auto;
 }
 
-.info__add:hover {
+.profile__add-button:hover {
     opacity: .6;
 }
 
@@ -24,10 +24,8 @@
 }
 
 @media screen and (max-width: 630px) {
-  .info__add {
+.profile__add-button {
     margin-left: 0;
     width: 100%;
 }
 }
-
-

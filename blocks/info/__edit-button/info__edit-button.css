@@ -15,6 +15,7 @@
 
 .info__edit-button:hover {
     opacity: .6;
+    transition: linear .3s;
 }
 
 @media screen and (max-width: 430px) {

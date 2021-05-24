@@ -1,5 +1,6 @@
 .header__logo {
   margin-bottom: 41px;
+  transition: linear .3s;
 }
 
 @media screen and (max-width: 800px) {

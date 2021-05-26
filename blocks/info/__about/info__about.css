@@ -20,7 +20,7 @@
   .info__about {
     font-size: 14px;
     max-width: 282px;
-    margin-top: 14px;
+    margin: 14px auto 0;
 }
 }
 

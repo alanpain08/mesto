@@ -1,4 +1,4 @@
-.element__like {
+.element__like-button {
     background-image: url(../../../images/like.svg);
     background-position: center;
     background-size: contain;
@@ -12,7 +12,7 @@
     align-self: center;
 }
 
-.element__like:hover {
+.element__like-button:hover {
   cursor: pointer;
   opacity: .5;
   transition: linear .3s;

@@ -49,15 +49,27 @@ function renderElement(name, link) {
   elementText.textContent = name;
   elementPhoto.alt = name;
   elementPhoto.src = link;
-  contentBlockElements.prepend(contentElement);
+
+  likeButton.addEventListener('click', like);
+  deleteElementButton.addEventListener('click', deleteElement);/*(evt) => {
+    evt.target.closest('.element').remove();
+  });*/
+
   return contentElement;
 }
 
-function renderElements() {
-  initialCards.forEach(renderElement);
+//
+function deleteElement(evt) {
+  evt.target.closest('.element').remove();
 }
 
-renderElements();
+//Вывод массив карточек
+initialCards.forEach((elem) => {
+  const card = renderElement(elem.name, elem.link);
+  contentBlockElements.prepend(card);
+});
+
+
 
 //Функция отправки формы Профиля
 function formSubmitHandler(evt) {
@@ -76,7 +88,10 @@ function removeOpenPopupClass(popup) {
   popup.classList.remove('popup_opened');
 }
 
-
+//Функция поставить/убрать like
+function like(evt) {
+  evt.target.classList.toggle('element__like-button_active');
+};
 
 //Открыть попап редактирования Профиля
 openEditPopup.addEventListener('click', () => {
@@ -91,10 +106,7 @@ closePopup.addEventListener('click', () => {
 //Отправка формы попапа редактирования Профиля
 formEditPopup.addEventListener('submit', formSubmitHandler);
 
-//Поставить/убрать like
-likeButton.addEventListener('click', (evt) => {
-  evt.target.classList.toggle('element__like_active');
-});
+
 
 
 

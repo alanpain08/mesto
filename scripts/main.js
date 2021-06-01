@@ -24,19 +24,27 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-//Элементы Profile
+//Элементы Profile и попапа Редкатирования
 const editPopup = document.querySelector('.popup_type_edit');
 const openEditPopup = document.querySelector('.info__edit-button');
-const closePopup = document.querySelector('.popup__close');
+const closeEditPopup = document.querySelector('.popup__close-edit');
 const nameEditInput = document.querySelector('.popup__input_type_name');
 const aboutEditInput = document.querySelector('.popup__input_type_about');
-const formEditPopup = document.querySelector('.popup__form');
+const formEditPopup = document.querySelector('.popup__form_type_edit');
 const nameInfo = document.querySelector('.info__name');
 const aboutInfo = document.querySelector('.info__about');
 
 //Элементы карточек
 const templateElement = document.querySelector('.template-element').content;
 const contentBlockElements = document.querySelector('.page__elements');
+
+//Элементы попапа Добавления нового места
+const addPopup = document.querySelector('.popup_type_add');
+const openAddPopup = document.querySelector('.profile__add-button');
+const closeAddPopup = document.querySelector('.popup__close-add');
+const nameAddInput = document.querySelector('.popup__input_type_title');
+const linkAddInput = document.querySelector('.popup__input_type_link');
+const formAddPopup = document.querySelector('.popup__form_type_add');
 
 //Функция создания карточки
 function renderElement(name, link) {
@@ -51,14 +59,12 @@ function renderElement(name, link) {
   elementPhoto.src = link;
 
   likeButton.addEventListener('click', like);
-  deleteElementButton.addEventListener('click', deleteElement);/*(evt) => {
-    evt.target.closest('.element').remove();
-  });*/
+  deleteElementButton.addEventListener('click', deleteElement);
 
   return contentElement;
 }
 
-//
+//Удаление карточки
 function deleteElement(evt) {
   evt.target.closest('.element').remove();
 }
@@ -69,7 +75,14 @@ initialCards.forEach((elem) => {
   contentBlockElements.prepend(card);
 });
 
-
+//Функция открытия попапов
+function addOpenPopupClass(popup) {
+  popup.classList.add('popup_opened');
+}
+//Функция закрытия попапов
+function removeOpenPopupClass(popup) {
+  popup.classList.remove('popup_opened');
+}
 
 //Функция отправки формы Профиля
 function formSubmitHandler(evt) {
@@ -79,13 +92,12 @@ function formSubmitHandler(evt) {
   removeOpenPopupClass(editPopup);
 }
 
-//Функция открытия попапов
-function addOpenPopupClass(popup) {
-  popup.classList.add('popup_opened');
-}
-//Функция закрытия попапов
-function removeOpenPopupClass(popup) {
-  popup.classList.remove('popup_opened');
+//Функция отправки формы Нового места
+function addFormSubmitHandler(evt) {
+  evt.preventDefault();
+  const newCard = renderElement(nameAddInput.value, linkAddInput.value);
+  contentBlockElements.prepend(newCard);
+  removeOpenPopupClass(addPopup);
 }
 
 //Функция поставить/убрать like
@@ -100,12 +112,22 @@ openEditPopup.addEventListener('click', () => {
   aboutEditInput.value = aboutInfo.textContent;
 });
 //Закрыть попап редактирования Профиля
-closePopup.addEventListener('click', () => {
+closeEditPopup.addEventListener('click', () => {
   removeOpenPopupClass(editPopup);
 });
 //Отправка формы попапа редактирования Профиля
 formEditPopup.addEventListener('submit', formSubmitHandler);
 
+//Открыть попап Добавления нового места
+openAddPopup.addEventListener('click', () => {
+  addOpenPopupClass(addPopup);
+});
+//Закрыть попап Добавления нового места
+closeAddPopup.addEventListener('click', () => {
+  removeOpenPopupClass(addPopup);
+});
+//Отправка формы попапа Добавления нового места
+formAddPopup.addEventListener('submit', addFormSubmitHandler);
 
 
 

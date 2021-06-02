@@ -116,12 +116,7 @@ function like(evt) {
   evt.target.classList.toggle('element__like-button_active');
 };
 
-/*Функция открытия Изображения
-function openImage(evt) {
-  evt.target.imgPopup.classList.add('popup_opened');
-  picturePopup.src = elementPhoto.src;
-  captionPopup = elementText.textContent;
-}*/
+//Закрыть попап Изображения
 closeImgPopup.addEventListener('click', () => {
   removeOpenPopupClass(imgPopup);
 });

@@ -46,6 +46,12 @@ const nameAddInput = document.querySelector('.popup__input_type_title');
 const linkAddInput = document.querySelector('.popup__input_type_link');
 const formAddPopup = document.querySelector('.popup__form_type_add');
 
+//Элементы попапа Изображения
+const imgPopup = document.querySelector('.popup_type_img');
+const closeImgPopup = document.querySelector('.popup__close-img');
+const picturePopup = document.querySelector('.popup__img');
+const captionPopup = document.querySelector('.popup__caption');
+
 //Функция создания карточки
 function renderElement(name, link) {
   const contentElement = templateElement.cloneNode(true);
@@ -60,6 +66,11 @@ function renderElement(name, link) {
 
   likeButton.addEventListener('click', like);
   deleteElementButton.addEventListener('click', deleteElement);
+  elementPhoto.addEventListener('click', () => {
+    imgPopup.classList.add('popup_opened');
+    picturePopup.src = elementPhoto.src;
+    captionPopup.textContent = elementText.textContent;
+  });
 
   return contentElement;
 }
@@ -104,6 +115,16 @@ function addFormSubmitHandler(evt) {
 function like(evt) {
   evt.target.classList.toggle('element__like-button_active');
 };
+
+/*Функция открытия Изображения
+function openImage(evt) {
+  evt.target.imgPopup.classList.add('popup_opened');
+  picturePopup.src = elementPhoto.src;
+  captionPopup = elementText.textContent;
+}*/
+closeImgPopup.addEventListener('click', () => {
+  removeOpenPopupClass(imgPopup);
+});
 
 //Открыть попап редактирования Профиля
 openEditPopup.addEventListener('click', () => {

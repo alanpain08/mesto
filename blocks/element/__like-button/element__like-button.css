@@ -13,8 +13,11 @@
     flex-shrink: 0;
 }
 
-.element__like-button:hover {
-  cursor: pointer;
-  opacity: .5;
-  transition: linear .3s;
+@media screen and (min-width:768px) and (max-width: 1280px) {
+  .element__like-button:hover {
+    cursor: pointer;
+    opacity: .5;
+    transition: linear .3s;
+  }
+
 }

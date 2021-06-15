@@ -1,3 +1,6 @@
+//Попапы
+const popups = document.querySelectorAll('.popup');
+
 
 //Элементы Profile и попапа Редкатирования
 const popupEditProfile = document.querySelector('.popup_type_edit');
@@ -46,6 +49,7 @@ function renderElement(name, link) {
     picturePopup.src = elementPhoto.src;
     captionPopup.textContent = elementText.textContent;
   });
+  document.addEventListener('keydown', closePopupByEsc);
 
   return contentElement;
 }
@@ -70,6 +74,14 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
+//Функция закрытия попапа по нажатию на ESC
+function closePopupByEsc(evt) {
+  if(evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 //Функция отправки формы Профиля
 function formEditProfileSubmitHandler(evt) {
   evt.preventDefault();
@@ -92,20 +104,21 @@ function like(evt) {
 };
 
 //Закрыть попап Изображения
-closePopupImageBtn.addEventListener('click', () => {
-  closePopup(popupImage);
-});
+//closePopupImageBtn.addEventListener('click', () => {
+  //closePopup(popupImage);
+//});
 
 //Открыть попап редактирования Профиля
 openPopupEditProfileBtn.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameEditInput.value = nameInfo.textContent;
   aboutEditInput.value = aboutInfo.textContent;
+  document.addEventListener('keydown', closePopupByEsc);
 });
 //Закрыть попап редактирования Профиля
-closePopupEditProfileBtn.addEventListener('click', () => {
-  closePopup(popupEditProfile);
-});
+//closePopupEditProfileBtn.addEventListener('click', () => {
+  //closePopup(popupEditProfile);
+//});
 //Отправка формы попапа редактирования Профиля
 formEditPopup.addEventListener('submit', formEditProfileSubmitHandler);
 
@@ -114,15 +127,28 @@ openPopupAddCardBtn.addEventListener('click', () => {
   openPopup(popupAddCard);
   nameAddInput.value = null;
   linkAddInput.value = null;
+  document.addEventListener('keydown', closePopupByEsc);
 });
 //Закрыть попап Добавления нового места
-closePopupAddCardBtn.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
+//closePopupAddCardBtn.addEventListener('click', () => {
+  //closePopup(popupAddCard);
+//});
 //Отправка формы попапа Добавления нового места
 formAddPopup.addEventListener('submit', addFormSubmitHandler);
 
-
+//Закрытие попапов
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+      document.removeEventListener('keydown', closePopupByEsc);
+    }
+    if(evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+      document.removeEventListener('keydown', closePopupByEsc);
+    }
+  })
+})
 
 
 

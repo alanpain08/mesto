@@ -1,23 +1,28 @@
-/*const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  }; */
-  
+//3 дня бился над одной кнопкой, но так и не одолел ее - 
+//при открытии попапа редактирования профиля она барахлит
+//подскажите, плиз, как исправить
+
+
+const config = {
+  form: '.popup__form',
+  input: '.popup__input',
+  submitButton: '.popup__submit-button',
+  inactiveButton: 'popup__submit-button_inactive',
+  inputError: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}; 
+
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(config.inputError);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(config.errorClass);
 };
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputElement.classList.remove(config.inputError);
+  errorElement.classList.remove(config.errorClass);
   errorElement.textContent = '';
 };
 
@@ -37,17 +42,17 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   if(hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', 'disabled');
-    //buttonElement.classList.add('popup__submit-button_inactive');
+    buttonElement.setAttribute('disabled', 'true');
+    buttonElement.classList.add(config.inactiveButton);
   } else {
     buttonElement.removeAttribute('disabled');
-    //buttonElement.classList.remove('popup__submit-button_inactive');
+    buttonElement.classList.remove(config.inactiveButton);
   }
 };
 
 const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__submit-button');
+  const inputList = Array.from(formElement.querySelectorAll(config.input));
+  const buttonElement = formElement.querySelector(config.submitButton);
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
@@ -58,13 +63,12 @@ const setEventListeners = (formElement) => {
 };
 
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  const formList = Array.from(document.querySelectorAll(config.form));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-      
-       });
-       setEventListeners(formElement);
+      evt.preventDefault()
+    });
+    setEventListeners(formElement);
   });
 }
 

@@ -103,11 +103,6 @@ function like(evt) {
   evt.target.classList.toggle('element__like-button_active');
 };
 
-//Закрыть попап Изображения
-//closePopupImageBtn.addEventListener('click', () => {
-  //closePopup(popupImage);
-//});
-
 //Открыть попап редактирования Профиля
 openPopupEditProfileBtn.addEventListener('click', () => {
   openPopup(popupEditProfile);
@@ -115,10 +110,7 @@ openPopupEditProfileBtn.addEventListener('click', () => {
   aboutEditInput.value = aboutInfo.textContent;
   document.addEventListener('keydown', closePopupByEsc);
 });
-//Закрыть попап редактирования Профиля
-//closePopupEditProfileBtn.addEventListener('click', () => {
-  //closePopup(popupEditProfile);
-//});
+
 //Отправка формы попапа редактирования Профиля
 formEditPopup.addEventListener('submit', formEditProfileSubmitHandler);
 
@@ -129,10 +121,7 @@ openPopupAddCardBtn.addEventListener('click', () => {
   linkAddInput.value = null;
   document.addEventListener('keydown', closePopupByEsc);
 });
-//Закрыть попап Добавления нового места
-//closePopupAddCardBtn.addEventListener('click', () => {
-  //closePopup(popupAddCard);
-//});
+
 //Отправка формы попапа Добавления нового места
 formAddPopup.addEventListener('submit', addFormSubmitHandler);
 
@@ -152,11 +141,5 @@ popups.forEach((popup) => {
 
 
 
-/* с этим пока не разобрался
-popup.addEventListener('click', function(event) {
-  if(event.target === event.currentTarget) {
-    togglePopupClass();
-  }
-})
-*/
+
 

@@ -1,9 +1,9 @@
-//3 дня бился над одной кнопкой, но так и не одолел ее - 
-//при открытии попапа редактирования профиля она барахлит
-//подскажите, плиз, как исправить
+//Кнопку в итоге блокирую при открытии попапа Добавления нового места
+//Очистку ошибок при повторном открытии попапо я пока не понял как реализовать
+//ибо так и не понял, как правильно переносить функции из одного файла в другой)
 
 
-const config = {
+const selectorObject = {
   form: '.popup__form',
   input: '.popup__input',
   submitButton: '.popup__submit-button',
@@ -12,25 +12,25 @@ const config = {
   errorClass: 'popup__input-error_active'
 }; 
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(config.inputError);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(config.errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(config.inputError);
   errorElement.classList.remove(config.errorClass);
   errorElement.textContent = '';
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, config);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   }
 };
 
@@ -40,7 +40,7 @@ const hasInvalidInput = (inputList) => {
   });
 }
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, config) => {
   if(hasInvalidInput(inputList)) {
     buttonElement.setAttribute('disabled', 'true');
     buttonElement.classList.add(config.inactiveButton);
@@ -50,26 +50,25 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.input));
   const buttonElement = formElement.querySelector(config.submitButton);
-  toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      checkInputValidity(formElement, inputElement, config);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
 };
 
-const enableValidation = () => {
+const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.form));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault()
     });
-    setEventListeners(formElement);
+    setEventListeners(formElement, config);
   });
 }
 
-enableValidation();
+enableValidation(selectorObject);

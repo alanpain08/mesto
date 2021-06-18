@@ -47,9 +47,10 @@ function renderElement(name, link) {
   elementPhoto.addEventListener('click', () => {
     openPopup(popupImage);
     picturePopup.src = elementPhoto.src;
+    picturePopup.alt = elementPhoto.alt;
     captionPopup.textContent = elementText.textContent;
   });
-  document.addEventListener('keydown', closePopupByEsc);
+  
 
   return contentElement;
 }
@@ -68,6 +69,7 @@ initialCards.forEach((elem) => {
 //Функция открытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
 }
 //Функция закрытия попапов
 function closePopup(popup) {
@@ -83,7 +85,7 @@ function closePopupByEsc(evt) {
 }
 
 //Функция отправки формы Профиля
-function formEditProfileSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   nameInfo.textContent = nameEditInput.value;
   aboutInfo.textContent = aboutEditInput.value;
@@ -91,7 +93,7 @@ function formEditProfileSubmitHandler(evt) {
 }
 
 //Функция отправки формы Нового места
-function addFormSubmitHandler(evt) {
+function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const newCard = renderElement(nameAddInput.value, linkAddInput.value);
   contentBlockElements.prepend(newCard);
@@ -108,22 +110,23 @@ openPopupEditProfileBtn.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameEditInput.value = nameInfo.textContent;
   aboutEditInput.value = aboutInfo.textContent;
-  document.addEventListener('keydown', closePopupByEsc);
 });
 
 //Отправка формы попапа редактирования Профиля
-formEditPopup.addEventListener('submit', formEditProfileSubmitHandler);
+formEditPopup.addEventListener('submit', handleProfileFormSubmit);
 
 //Открыть попап Добавления нового места
 openPopupAddCardBtn.addEventListener('click', () => {
   openPopup(popupAddCard);
-  nameAddInput.value = null;
-  linkAddInput.value = null;
-  document.addEventListener('keydown', closePopupByEsc);
+  formAddPopup.reset();
+  const buttonElement = formAddPopup.querySelector('.popup__submit-button');
+  //Cделать кнопку сабмита при открытии попапа Добавления нового места неактивной
+  buttonElement.setAttribute('disabled', 'true');
+  buttonElement.classList.add(selectorObject.inactiveButton);
 });
 
 //Отправка формы попапа Добавления нового места
-formAddPopup.addEventListener('submit', addFormSubmitHandler);
+formAddPopup.addEventListener('submit', handleAddFormSubmit);
 
 //Закрытие попапов
 popups.forEach((popup) => {

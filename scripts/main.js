@@ -74,6 +74,7 @@ function openPopup(popup) {
 //Функция закрытия попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 
 //Функция закрытия попапа по нажатию на ESC
@@ -120,7 +121,7 @@ openPopupAddCardBtn.addEventListener('click', () => {
   openPopup(popupAddCard);
   formAddPopup.reset();
   const buttonElement = formAddPopup.querySelector('.popup__submit-button');
-  //Cделать кнопку сабмита при открытии попапа Добавления нового места неактивной
+//Cделать кнопку сабмита при открытии попапа Добавления нового места неактивной
   buttonElement.setAttribute('disabled', 'true');
   buttonElement.classList.add(selectorObject.inactiveButton);
 });
@@ -133,11 +134,9 @@ popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if(evt.target.classList.contains('popup_opened')) {
       closePopup(popup);
-      document.removeEventListener('keydown', closePopupByEsc);
     }
     if(evt.target.classList.contains('popup__close')) {
       closePopup(popup);
-      document.removeEventListener('keydown', closePopupByEsc);
     }
   })
 })

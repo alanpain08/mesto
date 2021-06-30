@@ -1,0 +1,56 @@
+class Card {
+  constructor(data, templateSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._template = templateSelector;
+  }
+
+  _getTemplate() {
+    // Забрать размеку из HTML и клонировать элемент
+    const cardElement = document
+      .querySelector(this._template)
+      .content
+      .querySelector('.element')
+      .cloneNode(true);
+
+    // Вернуть DOM-элемент карточки
+    return cardElement;
+  }
+
+  generateElement() {
+    // Записать разметку в приватное поле _element.
+    // Так у других элементов появится доступ к ней.
+    this._element = this._getTemplate();
+    this._setEventListeners();
+
+    // Добавим данные
+    this._element.querySelector('.element__text').textContent = this._name;
+    this._element.querySelector('.element__img').src = this._link;
+    this._element.querySelector('.element__img').alt = this._name;
+
+    // Вернуть элемент наружу
+    return this._element;
+  }
+
+  // Добавить слушатели событий
+  _setEventListeners() {
+    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+      this._handleLikeClick();
+    });
+
+    this._element.querySelector('.element__delete-button').addEventListener('click', () => {
+      this._deleteElement();
+    });
+  }
+
+  // Добавить метод лайка
+  _handleLikeClick() {
+    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+  }
+
+  // Добавить метод удаления карточки
+  _deleteElement() {
+    this._element.remove();
+    this._element = null; // затереть ссылку на DOM-элемент
+  }
+}

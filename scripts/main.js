@@ -12,10 +12,6 @@ const formEditPopup = document.querySelector('.popup__form_type_edit');
 const nameInfo = document.querySelector('.info__name');
 const aboutInfo = document.querySelector('.info__about');
 
-//Элементы карточек
-const templateElement = document.querySelector('.template-element').content;
-const contentBlockElements = document.querySelector('.page__elements');
-
 //Элементы попапа Добавления нового места
 const popupAddCard = document.querySelector('.popup_type_add');
 const openPopupAddCardBtn = document.querySelector('.profile__add-button');
@@ -29,6 +25,10 @@ const popupImage = document.querySelector('.popup_type_img');
 const closePopupImageBtn = document.querySelector('.popup__close-img');
 const picturePopup = document.querySelector('.popup__img');
 const captionPopup = document.querySelector('.popup__caption');
+
+//Элементы карточек
+const templateElement = document.querySelector('.template-element').content;
+const contentBlockElements = document.querySelector('.page__elements');
 
 //Функция создания карточки
 function renderElement(name, link) {
@@ -50,7 +50,7 @@ function renderElement(name, link) {
     picturePopup.alt = elementPhoto.alt;
     captionPopup.textContent = elementText.textContent;
   });
-  
+
 
   return contentElement;
 }

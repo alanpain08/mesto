@@ -1,11 +1,17 @@
+export { Card };
+import { openPopup } from './main.js';
+
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, popupImage, picturePopup, captionPopup) {
     this._name = data.name;
     this._link = data.link;
     this._template = templateSelector;
+    this._popupImage = popupImage;
+    this._picturePopup = picturePopup;
+    this._captionPopup = captionPopup;
   }
 
-  _getTemplate() {
+  _getTemplate = () => {
     // Забрать размеку из HTML и клонировать элемент
     const cardElement = document
       .querySelector(this._template)
@@ -17,13 +23,13 @@ class Card {
     return cardElement;
   }
 
-  generateElement() {
+  generateElement = () => {
     // Записать разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    // Добавим данные
+    // Добавить данные
     this._element.querySelector('.element__text').textContent = this._name;
     this._element.querySelector('.element__img').src = this._link;
     this._element.querySelector('.element__img').alt = this._name;
@@ -33,7 +39,7 @@ class Card {
   }
 
   // Добавить слушатели событий
-  _setEventListeners() {
+  _setEventListeners = () => {
     this._element.querySelector('.element__like-button').addEventListener('click', () => {
       this._handleLikeClick();
     });
@@ -41,16 +47,28 @@ class Card {
     this._element.querySelector('.element__delete-button').addEventListener('click', () => {
       this._deleteElement();
     });
+
+    this._element.querySelector('.element__img').addEventListener('click', () => {
+      this._openPopupImage();
+    })
   }
 
   // Добавить метод лайка
-  _handleLikeClick() {
+  _handleLikeClick = () => {
     this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
 
   // Добавить метод удаления карточки
-  _deleteElement() {
+  _deleteElement = () => {
     this._element.remove();
     this._element = null; // затереть ссылку на DOM-элемент
+  }
+
+  // Метод открытия попапа Изображения
+  _openPopupImage = () => {
+    openPopup(this._popupImage);
+    this._picturePopup.src = this._link;
+    this._picturePopup.alt = this._name;
+    this._captionPopup.textContent = this._name;
   }
 }

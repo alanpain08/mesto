@@ -1,5 +1,6 @@
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
+import { FormValidator } from './FormValiadtor.js';
 export { openPopup };
 
 

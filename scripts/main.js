@@ -1,12 +1,20 @@
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
-import { FormValidator } from './FormValiadtor.js';
+import { FormValidator } from './FormValidator.js';
 export { openPopup };
 
+//Объект с настройками для валидации
+const selectorObject = {
+  form: '.popup__form',
+  input: '.popup__input',
+  submitButton: '.popup__submit-button',
+  inactiveButton: 'popup__submit-button_inactive',
+  inputError: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}; 
 
 //Попапы
 const popups = document.querySelectorAll('.popup');
-
 
 //Элементы Profile и попапа Редкатирования
 const popupEditProfile = document.querySelector('.popup_type_edit');
@@ -113,7 +121,12 @@ popups.forEach((popup) => {
   })
 })
 
+//Валидация форм
+const editPopupValidation = new FormValidator(selectorObject, formEditPopup);
+editPopupValidation.enableValidation();
 
+const addPopupValidation = new FormValidator(selectorObject, formAddPopup);
+addPopupValidation.enableValidation();
 
 
 

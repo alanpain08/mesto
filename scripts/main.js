@@ -41,13 +41,14 @@ const captionPopup = document.querySelector('.popup__caption');
 const contentBlockElements = document.querySelector('.page__elements');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Функция создания карточки
+function createElement(item) {
+  const card = new Card(item, '.template-element', popupImage, picturePopup, captionPopup);
+  return card.generateElement();
+}
 // Вывод массива карточек
 initialCards.forEach((item) => {
-  const card = new Card(item, '.template-element', popupImage, picturePopup, captionPopup);
-  const cardElement = card.generateElement();
-
-  // Добавить в DOM
-  contentBlockElements.prepend(cardElement);
+  contentBlockElements.prepend(createElement(item));
 });
 
 //Функция открытия попапов
@@ -91,6 +92,7 @@ openPopupEditProfileBtn.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameEditInput.value = nameInfo.textContent;
   aboutEditInput.value = aboutInfo.textContent;
+  editPopupValidation.toggleButtonState();
 });
 
 //Отправка формы попапа редактирования Профиля
@@ -100,10 +102,9 @@ formEditPopup.addEventListener('submit', handleProfileFormSubmit);
 openPopupAddCardBtn.addEventListener('click', () => {
   openPopup(popupAddCard);
   formAddPopup.reset();
-  const buttonElement = formAddPopup.querySelector('.popup__submit-button');
-  //Cделать кнопку сабмита при открытии попапа Добавления нового места неактивной
-  buttonElement.setAttribute('disabled', 'true');
-  buttonElement.classList.add(selectorObject.inactiveButton);
+  //Регулировать состояние кнопки сабмита с помощью публичного метода
+  //класса toggleButtonState
+  addPopupValidation.toggleButtonState();
 });
 
 //Отправка формы попапа Добавления нового места

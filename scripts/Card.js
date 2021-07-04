@@ -30,9 +30,10 @@ class Card {
     this._setEventListeners();
 
     // Добавить данные
+    const elementImg = this._element.querySelector('.element__img');
     this._element.querySelector('.element__text').textContent = this._name;
-    this._element.querySelector('.element__img').src = this._link;
-    this._element.querySelector('.element__img').alt = this._name;
+    elementImg.src = this._link;
+    elementImg.alt = this._name;
 
     // Вернуть элемент наружу
     return this._element;

@@ -1,6 +1,7 @@
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import {Section} from './Section.js';
 export { openPopup };
 
 //Объект с настройками для валидации
@@ -47,9 +48,18 @@ function createElement(item) {
   return card.generateElement();
 }
 // Вывод массива карточек
-initialCards.forEach((item) => {
+/*initialCards.forEach((item) => {
   contentBlockElements.prepend(createElement(item));
-});
+});*/
+
+const cardList = new Section({
+  data: initialCards,
+  renderer: (item) => {
+    cardList.addItem(createElement(item));
+    },
+  },
+  contentBlockElements
+);
 
 //Функция открытия попапов
 function openPopup(popup) {

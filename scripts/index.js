@@ -1,7 +1,7 @@
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import {Section} from './Section.js';
+import { Section } from './Section.js';
 export { openPopup };
 
 //Объект с настройками для валидации
@@ -12,7 +12,7 @@ const selectorObject = {
   inactiveButton: 'popup__submit-button_inactive',
   inputError: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
-}; 
+};
 
 //Попапы
 const popups = document.querySelectorAll('.popup');
@@ -56,8 +56,8 @@ const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
     cardList.addItem(createElement(item));
-    },
   },
+},
   contentBlockElements
 );
 

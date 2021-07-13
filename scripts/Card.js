@@ -1,5 +1,5 @@
 export { Card };
-import { openPopup } from './index.js';
+//import { openPopup } from './index.js';
 
 class Card {
   constructor(data, templateSelector, popupImage, picturePopup, captionPopup) {

@@ -2,7 +2,8 @@ import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { Section } from './Section.js';
-export { openPopup };
+import { Popup } from './Popup.js';
+//export { openPopup };
 
 //Объект с настройками для валидации
 const selectorObject = {
@@ -61,8 +62,10 @@ const cardList = new Section({
   contentBlockElements
 );
 
+cardList.renderItems();
+
 //Функция открытия попапов
-function openPopup(popup) {
+/*function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
 }
@@ -79,7 +82,7 @@ function closePopupByEsc(evt) {
     closePopup(openedPopup);
   }
 }
-
+*/
 //Функция отправки формы Профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -99,7 +102,8 @@ function handleAddFormSubmit(evt) {
 
 //Открыть попап редактирования Профиля
 openPopupEditProfileBtn.addEventListener('click', () => {
-  openPopup(popupEditProfile);
+  const openedEditPopup = new Popup(popupEditProfile);
+  openedEditPopup.open();
   nameEditInput.value = nameInfo.textContent;
   aboutEditInput.value = aboutInfo.textContent;
   editPopupValidation.toggleButtonState();

@@ -101,13 +101,18 @@ function handleAddFormSubmit(evt) {
 }
 
 //Открыть попап редактирования Профиля
+const openedEditPopup = new Popup(popupEditProfile);
 openPopupEditProfileBtn.addEventListener('click', () => {
-  const openedEditPopup = new Popup(popupEditProfile);
   openedEditPopup.open();
+  openedEditPopup.setEventListeners();
   nameEditInput.value = nameInfo.textContent;
   aboutEditInput.value = aboutInfo.textContent;
   editPopupValidation.toggleButtonState();
-});
+})
+
+//openedEditPopup.open();
+
+
 
 //Отправка формы попапа редактирования Профиля
 formEditPopup.addEventListener('submit', handleProfileFormSubmit);
@@ -125,7 +130,7 @@ openPopupAddCardBtn.addEventListener('click', () => {
 formAddPopup.addEventListener('submit', handleAddFormSubmit);
 
 //Закрытие попапов
-popups.forEach((popup) => {
+/*popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(popup);
@@ -134,7 +139,7 @@ popups.forEach((popup) => {
       closePopup(popup);
     }
   })
-})
+})*/
 
 //Валидация форм
 const editPopupValidation = new FormValidator(selectorObject, formEditPopup);

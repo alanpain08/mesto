@@ -2,13 +2,12 @@ export { Card };
 //import { openPopup } from './index.js';
 
 class Card {
-  constructor(data, templateSelector, popupImage, picturePopup, captionPopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._template = templateSelector;
-    this._popupImage = popupImage;
-    this._picturePopup = picturePopup;
-    this._captionPopup = captionPopup;
+    this._handleCardClick = handleCardClick;
+    
   }
 
   _getTemplate = () => {
@@ -67,9 +66,10 @@ class Card {
 
   // Метод открытия попапа Изображения
   _openPopupImage = () => {
-    openPopup(this._popupImage);
+    this._handleCardClick();
+    /*openPopup(this._popupImage);
     this._picturePopup.src = this._link;
     this._picturePopup.alt = this._name;
-    this._captionPopup.textContent = this._name;
+    this._captionPopup.textContent = this._name;*/
   }
 }

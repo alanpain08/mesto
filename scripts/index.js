@@ -3,6 +3,8 @@ import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
+import { PopupWithForm } from './PopupWithForm.js';
 //export { openPopup };
 
 //Объект с настройками для валидации
@@ -43,9 +45,18 @@ const captionPopup = document.querySelector('.popup__caption');
 const contentBlockElements = document.querySelector('.page__elements');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Функция открытия попапа Изображения
+function openPopupImage(popupSelector, data) {
+  const popupImage = new PopupWithImage(popupSelector, data);
+  popupImage.open();
+  popupImage.setEventListeners();
+}
+
 //Функция создания карточки
 function createElement(item) {
-  const card = new Card(item, '.template-element', popupImage, picturePopup, captionPopup);
+  const card = new Card(item, '.template-element', () => {
+    openPopupImage(popupImage, item);
+  });
   return card.generateElement();
 }
 // Вывод массива карточек

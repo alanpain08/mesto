@@ -47,9 +47,9 @@ const contentBlockElements = document.querySelector('.page__elements');
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Функция открытия попапа Изображения
 function openPopupImage(popupSelector, data) {
-  const popupImage = new PopupWithImage(popupSelector, data);
-  popupImage.open();
-  popupImage.setEventListeners();
+  const openedPopupImage = new PopupWithImage(popupSelector, data);
+  openedPopupImage.open();
+  openedPopupImage.setEventListeners();
 }
 
 //Функция создания карточки
@@ -73,6 +73,20 @@ const cardList = new Section({
   contentBlockElements
 );
 
+//Открыть попап Добавления нового места
+const openedAddPopup = new PopupWithForm(popupAddCard, (item) => {
+  cardList.addItem(createElement(item));
+});
+
+openPopupAddCardBtn.addEventListener('click', () => {
+  openedAddPopup.open();
+  openedAddPopup.setEventListeners();
+  //Регулировать состояние кнопки сабмита с помощью публичного метода
+  //класса toggleButtonState
+  addPopupValidation.toggleButtonState();
+});
+
+//Отрисовка карточек
 cardList.renderItems();
 
 //Функция открытия попапов
@@ -103,13 +117,13 @@ function handleProfileFormSubmit(evt) {
 }
 
 //Функция отправки формы Нового места
-function handleAddFormSubmit(evt) {
+/*function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const newCard = new Card({ name: nameAddInput.value, link: linkAddInput.value }, '.template-element', popupImage, picturePopup, captionPopup);
   const cardElement = newCard.generateElement();
   contentBlockElements.prepend(cardElement);
   closePopup(popupAddCard);
-}
+}*/
 
 //Открыть попап редактирования Профиля
 const openedEditPopup = new Popup(popupEditProfile);
@@ -128,17 +142,10 @@ openPopupEditProfileBtn.addEventListener('click', () => {
 //Отправка формы попапа редактирования Профиля
 formEditPopup.addEventListener('submit', handleProfileFormSubmit);
 
-//Открыть попап Добавления нового места
-openPopupAddCardBtn.addEventListener('click', () => {
-  openPopup(popupAddCard);
-  formAddPopup.reset();
-  //Регулировать состояние кнопки сабмита с помощью публичного метода
-  //класса toggleButtonState
-  addPopupValidation.toggleButtonState();
-});
+
 
 //Отправка формы попапа Добавления нового места
-formAddPopup.addEventListener('submit', handleAddFormSubmit);
+//formAddPopup.addEventListener('submit', handleAddFormSubmit);
 
 //Закрытие попапов
 /*popups.forEach((popup) => {

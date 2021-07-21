@@ -1,5 +1,4 @@
 export { Card };
-//import { openPopup } from './index.js';
 
 class Card {
   constructor(data, templateSelector, handleCardClick) {
@@ -7,7 +6,7 @@ class Card {
     this._link = data.link;
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
-    
+
   }
 
   _getTemplate = () => {

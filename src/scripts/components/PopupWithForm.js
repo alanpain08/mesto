@@ -4,24 +4,22 @@ export { PopupWithForm };
 class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-    this._popupSelector = popupSelector;
+    this._popup = document.querySelector(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
+    this._inputList = this._popup.querySelectorAll('.popup__input');
+    this._popupForm = this._popup.querySelector('.popup__form');
   }
 
   setEventListeners() {
-    this._popupForm = this._popupSelector.querySelector('.popup__form');
     super.setEventListeners();
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      this._popupForm.reset();
-      this.close(this._popupSelector);
+      this.close();
     })
   }
 
   _getInputValues() {
-    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
-
     this._formValues = {};
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
@@ -31,7 +29,6 @@ class PopupWithForm extends Popup {
   }
 
   close() {
-    this._popupForm = this._popupSelector.querySelector('.popup__form');
     super.close();
     this._popupForm.reset();
   }

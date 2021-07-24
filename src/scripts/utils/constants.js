@@ -42,7 +42,7 @@ const selectorObject = {
 };
 
 //Элементы Profile и попапа Редкатирования
-const popupEditProfile = document.querySelector('.popup_type_edit');
+const popupEditProfile = '.popup_type_edit';
 const openPopupEditProfileBtn = document.querySelector('.info__edit-button');
 const nameEditInput = document.querySelector('.popup__input_type_name');
 const aboutEditInput = document.querySelector('.popup__input_type_about');
@@ -51,12 +51,12 @@ const nameInfo = document.querySelector('.info__name');
 const aboutInfo = document.querySelector('.info__about');
 
 //Элементы попапа Добавления нового места
-const popupAddCard = document.querySelector('.popup_type_add');
+const popupAddCard = '.popup_type_add';
 const openPopupAddCardBtn = document.querySelector('.profile__add-button');
 const formAddPopup = document.querySelector('.popup__form_type_add');
 
 //Элементы попапа Изображения
-const popupImage = document.querySelector('.popup_type_img');
+const popupImage = '.popup_type_img';
 
 //Элементы карточек
 const contentBlockElements = document.querySelector('.page__elements');

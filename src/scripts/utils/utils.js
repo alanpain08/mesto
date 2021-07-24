@@ -1,18 +1,21 @@
 import { popupImage } from './constants.js';
 import { Card } from '../components/Card.js';
-import { PopupWithImage } from '../components/PopupWithImage.js'
+import { PopupWithImage } from '../components/PopupWithImage.js';
 
 //Функция открытия попапа Изображения
-function openPopupImage(popupSelector, data) {
+/*function openPopupImage(popupSelector, data) {
   const openedPopupImage = new PopupWithImage(popupSelector, data);
   openedPopupImage.open();
   openedPopupImage.setEventListeners();
-}
+}*/
+
+const popupWithImage = new PopupWithImage(popupImage);
+popupWithImage.setEventListeners();
 
 //Функция создания карточки
 export function createElement(item) {
   const card = new Card(item, '.template-element', () => {
-    openPopupImage(popupImage, item);
+    popupWithImage.open(item.link, item.name);
   });
   return card.generateElement();
 }

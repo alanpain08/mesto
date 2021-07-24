@@ -1,16 +1,15 @@
-import './pages/index.css';
+import './index.css';
 import {
   initialCards, selectorObject,
   popupEditProfile, openPopupEditProfileBtn, nameEditInput, aboutEditInput, formEditPopup, nameInfo, aboutInfo,
   popupAddCard, openPopupAddCardBtn, formAddPopup,
   contentBlockElements
-} from './scripts/utils/constants.js';
-import { createElement } from './scripts/utils/utils.js';
-import { FormValidator } from './scripts/components/FormValidator.js';
-import { Section } from './scripts/components/Section.js';
-import { PopupWithForm } from './scripts/components/PopupWithForm.js';
-import { UserInfo } from './scripts/components/UserInfo.js';
-
+} from '../scripts/utils/constants.js';
+import { createElement } from '../scripts/utils/utils.js';
+import { FormValidator } from '../scripts/components/FormValidator.js';
+import { Section } from '../scripts/components/Section.js';
+import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import { UserInfo } from '../scripts/components/UserInfo.js';
 
 
 const cardList = new Section({

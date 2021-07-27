@@ -1,6 +1,21 @@
 export {
-  initialCards, selectorObject, popupEditProfile, openPopupEditProfileBtn, nameEditInput, aboutEditInput, formEditPopup, nameInfo, aboutInfo,
+  apiConfig, infoSelectors, initialCards, selectorObject, popupEditProfile, openPopupEditProfileBtn, nameEditInput, aboutEditInput, formEditPopup, nameInfo, aboutInfo,
   popupAddCard, openPopupAddCardBtn, formAddPopup, popupImage, contentBlockElements
+}
+
+//Объект с данными для Апи
+const apiConfig = {
+  adress: `https://mesto.nomoreparties.co/v1/`,
+  cohort: `cohort-26`,
+  headers: {
+    authorization: '98f3d7dc-1729-485b-86b6-af7eebdd3027',
+    'Content-Type': 'application/json'
+  }
+}
+
+const infoSelectors = {
+  nameSelector: '.info__name',
+  aboutSelector: '.info__about'
 }
 
 //Массив карточек

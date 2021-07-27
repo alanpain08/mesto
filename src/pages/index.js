@@ -1,6 +1,6 @@
 import './index.css';
 import {
-  initialCards, selectorObject,
+  apiConfig, infoSelectors, initialCards, selectorObject,
   popupEditProfile, openPopupEditProfileBtn, nameEditInput, aboutEditInput, formEditPopup, nameInfo, aboutInfo,
   popupAddCard, openPopupAddCardBtn, formAddPopup,
   contentBlockElements
@@ -10,16 +10,44 @@ import { FormValidator } from '../scripts/components/FormValidator.js';
 import { Section } from '../scripts/components/Section.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
+import { Api } from '../scripts/components/Api.js';
 
+const api = new Api(apiConfig);
 
-const cardList = new Section({
-  data: initialCards,
-  renderer: (item) => {
+const popupInfo = new UserInfo(infoSelectors);
+
+api.getUserInfo()
+  .then((data) => {
+    console.log(data);
+    const user = {
+      name: data.name,
+      about: data.about
+    }
+    console.log(user);
+    popupInfo.updateUserInfo(user)
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+const cardList = new Section(
+  (item) => {
     cardList.addItem(createElement(item));
   },
-},
   contentBlockElements
 );
+
+api.getInitialCards()
+  .then((cards) => {
+    console.log(cards);
+    cardList.renderItems(cards);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+
+
 
 //Открыть попап Добавления нового места
 const openedAddPopup = new PopupWithForm(popupAddCard, (item) => {
@@ -38,7 +66,7 @@ cardList.renderItems();
 
 
 //Открыть попап редактирования Профиля
-const popupInfo = new UserInfo(nameInfo, aboutInfo);
+
 
 const openedEditPopup = new PopupWithForm(popupEditProfile, (item) => {
   popupInfo.setUserInfo(item);

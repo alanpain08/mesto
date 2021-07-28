@@ -20,6 +20,6 @@ export class UserInfo {
 
   updateUserInfo() {
     this._nameSelector.textContent = this.name;
-    this._aboutSelector.textContent = this.name;
+    this._aboutSelector.textContent = this.about;
   }
 }

@@ -30,4 +30,24 @@ export class Api {
         return Promise.reject(`Что-то пошло не так: ${res.status}`)
       })
   }
+
+  editUserInfo({ name, about }) {
+    return fetch(`${this._adress}${this._cohort}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+
+        return Promise.reject(`Что-то пошло не так: ${res.status}`)
+      })
+  }
+
+
 }

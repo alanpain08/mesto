@@ -24,7 +24,17 @@ api.getUserInfo()
       about: data.about
     }
     console.log(user);
-    popupInfo.updateUserInfo(user)
+    popupInfo.setUserInfo(user);
+    popupInfo.updateUserInfo();
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+api.getInitialCards()
+  .then((cards) => {
+    console.log(cards);
+    cardList.renderItems(cards);
   })
   .catch((err) => {
     console.log(err);
@@ -37,16 +47,28 @@ const cardList = new Section(
   contentBlockElements
 );
 
-api.getInitialCards()
-  .then((cards) => {
-    console.log(cards);
-    cardList.renderItems(cards);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 
 
+//Открыть попап редактирования Профиля
+const openedEditPopup = new PopupWithForm(popupEditProfile, (item) => {
+  api.editUserInfo({ name: item.name, about: item.about })
+    .then((res) => {
+      popupInfo.setUserInfo(res);
+      popupInfo.updateUserInfo();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+});
+openedEditPopup.setEventListeners();
+
+openPopupEditProfileBtn.addEventListener('click', () => {
+  openedEditPopup.open();
+  const { name, about } = popupInfo.getUserInfo();
+  nameEditInput.value = name;
+  aboutEditInput.value = about;
+  editPopupValidation.toggleButtonState();
+})
 
 
 //Открыть попап Добавления нового места
@@ -62,24 +84,10 @@ openPopupAddCardBtn.addEventListener('click', () => {
 });
 
 //Отрисовка карточек
-cardList.renderItems();
+//cardList.renderItems();
 
 
-//Открыть попап редактирования Профиля
 
-
-const openedEditPopup = new PopupWithForm(popupEditProfile, (item) => {
-  popupInfo.setUserInfo(item);
-});
-openedEditPopup.setEventListeners();
-
-openPopupEditProfileBtn.addEventListener('click', () => {
-  openedEditPopup.open();
-  const { name, about } = popupInfo.getUserInfo();
-  nameEditInput.value = name;
-  aboutEditInput.value = about;
-  editPopupValidation.toggleButtonState();
-})
 
 //Валидация форм
 const editPopupValidation = new FormValidator(selectorObject, formEditPopup);

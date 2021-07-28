@@ -12,27 +12,18 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import { Api } from '../scripts/components/Api.js';
 
+let userId = null;
+
 const api = new Api(apiConfig);
 
 const popupInfo = new UserInfo(infoSelectors);
 
-api.getUserInfo()
-  .then((data) => {
-    console.log(data);
-    const user = {
-      name: data.name,
-      about: data.about
-    }
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
     console.log(user);
+    userId = user._id;
     popupInfo.setUserInfo(user);
     popupInfo.updateUserInfo();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-
-api.getInitialCards()
-  .then((cards) => {
     console.log(cards);
     cardList.renderItems(cards);
   })
@@ -46,7 +37,6 @@ const cardList = new Section(
   },
   contentBlockElements
 );
-
 
 
 //Открыть попап редактирования Профиля
@@ -73,7 +63,15 @@ openPopupEditProfileBtn.addEventListener('click', () => {
 
 //Открыть попап Добавления нового места
 const openedAddPopup = new PopupWithForm(popupAddCard, (item) => {
-  cardList.addItem(createElement(item));
+  api.addCard({name: item.name, link: item.link})
+    .then((res) => {
+      console.log(res);
+      cardList.addItem(createElement(res));
+      cardList.renderItems()
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 });
 openedAddPopup.setEventListeners();
 

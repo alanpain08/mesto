@@ -49,5 +49,21 @@ export class Api {
       })
   }
 
+  addCard({name, link}) {
+    return fetch(`${this._adress}${this._cohort}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
 
+        return Promise.reject(`Что-то пошло не так: ${res.status}`)
+      })
+  }
 }

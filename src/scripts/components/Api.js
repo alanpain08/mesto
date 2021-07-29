@@ -49,7 +49,7 @@ export class Api {
       })
   }
 
-  addCard({name, link}) {
+  addCard({ name, link }) {
     return fetch(`${this._adress}${this._cohort}/cards`, {
       method: 'POST',
       headers: this._headers,

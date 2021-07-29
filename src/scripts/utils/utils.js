@@ -2,13 +2,6 @@ import { popupImage } from './constants.js';
 import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 
-//Функция открытия попапа Изображения
-/*function openPopupImage(popupSelector, data) {
-  const openedPopupImage = new PopupWithImage(popupSelector, data);
-  openedPopupImage.open();
-  openedPopupImage.setEventListeners();
-}*/
-
 const popupWithImage = new PopupWithImage(popupImage);
 popupWithImage.setEventListeners();
 

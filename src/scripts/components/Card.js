@@ -66,9 +66,6 @@ class Card {
   // Метод открытия попапа Изображения
   _openPopupImage = () => {
     this._handleCardClick();
-    /*openPopup(this._popupImage);
-    this._picturePopup.src = this._link;
-    this._picturePopup.alt = this._name;
-    this._captionPopup.textContent = this._name;*/
+
   }
 }

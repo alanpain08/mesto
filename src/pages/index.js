@@ -25,7 +25,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     popupInfo.setUserInfo(user);
     popupInfo.updateUserInfo();
     console.log(cards);
-    cardList.renderItems(cards);
+    cardList.renderItems(cards.reverse());
   })
   .catch((err) => {
     console.log(err);
@@ -63,11 +63,9 @@ openPopupEditProfileBtn.addEventListener('click', () => {
 
 //Открыть попап Добавления нового места
 const openedAddPopup = new PopupWithForm(popupAddCard, (item) => {
-  api.addCard({name: item.name, link: item.link})
+  api.addCard({ name: item.place, link: item.link })
     .then((res) => {
-      console.log(res);
       cardList.addItem(createElement(res));
-      cardList.renderItems()
     })
     .catch((err) => {
       console.log(err);

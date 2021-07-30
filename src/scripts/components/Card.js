@@ -1,11 +1,12 @@
 export { Card };
 
 class Card {
-  constructor(data, templateSelector, {handleCardClick}) {
+  constructor(data, templateSelector, { handleCardClick }) {
     this._name = data.name;
     this._link = data.link;
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._likes = data.likes;
 
   }
 
@@ -29,10 +30,11 @@ class Card {
 
     // Добавить данные
     const elementImg = this._element.querySelector('.element__img');
+    const likesQuantity = this._element.querySelector('.element__like-number');
     this._element.querySelector('.element__text').textContent = this._name;
     elementImg.src = this._link;
     elementImg.alt = this._name;
-
+    likesQuantity.textContent = this._likes.length;
     // Вернуть элемент наружу
     return this._element;
   }
@@ -51,6 +53,12 @@ class Card {
       this._openPopupImage();
     })
   }
+
+  //Определить есть ли лайк юзера
+  cardIsLiked(likes) {
+
+  }
+
 
   // Добавить метод лайка
   _handleLikeClick = () => {

@@ -39,7 +39,6 @@ class Card {
 
     // Добавить данные
     const elementImg = this._element.querySelector('.element__img');
-    //const likesQuantity = this._element.querySelector('.element__like-number');
     const deleteButton = this._element.querySelector('.element__delete-button');
     this._element.querySelector('.element__text').textContent = this._name;
     elementImg.src = this._link;

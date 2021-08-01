@@ -1,6 +1,6 @@
 import './index.css';
 import {
-  apiConfig, infoSelectors, initialCards, selectorObject,
+  apiConfig, infoSelectors, selectorObject,
   popupEditProfile, openPopupEditProfileBtn, nameEditInput, aboutEditInput, formEditPopup, nameInfo, aboutInfo,
   popupAddCard, openPopupAddCardBtn, formAddPopup,
   popupImage, 
@@ -166,11 +166,6 @@ openPopupAvatarBtn.addEventListener('click', () => {
   //Регулировать состояние кнопки сабмита с помощью публичного метода класса toggleButtonState
   avatarPopupValidation.toggleButtonState();
 });
-
-//Отрисовка карточек
-//cardList.renderItems();
-
-
 
 
 //Валидация форм

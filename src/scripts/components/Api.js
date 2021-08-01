@@ -67,8 +67,8 @@ export class Api {
       })
   }
 
-  putLike(cardID) {
-    return fetch(`${this._adress}${this._cohort}/cards/likes/${cardID}`, {
+  putLike(cardId) {
+    return fetch(`${this._adress}${this._cohort}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers
     })
@@ -81,10 +81,41 @@ export class Api {
       })
   }
 
-  deleteLike(cardID) {
-    return fetch(`${this._adress}${this._cohort}/cards/likes/${cardID}`, {
+  deleteLike(cardId) {
+    return fetch(`${this._adress}${this._cohort}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+
+        return Promise.reject(`Что-то пошло не так: ${res.status}`)
+      })
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._adress}${this._cohort}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+
+        return Promise.reject(`Что-то пошло не так: ${res.status}`)
+      })
+  }
+
+  editAvatar({avatar}) {
+    return fetch(`${this._adress}${this._cohort}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatar
+      })
     })
       .then((res) => {
         if (res.ok) {

@@ -1,6 +1,6 @@
 export {
   apiConfig, infoSelectors, initialCards, selectorObject, popupEditProfile, openPopupEditProfileBtn, nameEditInput, aboutEditInput, formEditPopup, nameInfo, aboutInfo,
-  popupAddCard, openPopupAddCardBtn, formAddPopup, popupImage, contentBlockElements
+  popupAddCard, openPopupAddCardBtn, formAddPopup, popupImage, contentBlockElements, popupSubmit, popupAvatar, openPopupAvatarBtn, formAvatarPopup
 }
 
 //Объект с данными для Апи
@@ -15,7 +15,8 @@ const apiConfig = {
 
 const infoSelectors = {
   nameSelector: '.info__name',
-  aboutSelector: '.info__about'
+  aboutSelector: '.info__about',
+  avatarSelector: '.profile__avatar'
 }
 
 //Массив карточек
@@ -75,3 +76,11 @@ const popupImage = '.popup_type_img';
 
 //Элементы карточек
 const contentBlockElements = document.querySelector('.page__elements');
+
+//элементы попапа Подтверждения
+const popupSubmit = '.popup_type_submit';
+
+//элементы попапа редактирования аватара
+const popupAvatar = '.popup_type_avatar';
+const openPopupAvatarBtn = document.querySelector('.profile__avatar-container');
+const formAvatarPopup = document.querySelector('.popup__form_type_avatar');

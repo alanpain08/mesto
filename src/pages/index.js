@@ -29,8 +29,8 @@ popupWithImage.setEventListeners();
 const popupWithSubmit = new PopupWithSubmit(popupSubmit, (item) => {
   popupWithSubmit.loadingButton(true);
   api.deleteCard(item.getCardId())
-    .then((res) => {
-        item.deleteElement(res);
+    .then(() => {
+        item.deleteElement();
         popupWithSubmit.close();
     })
     .catch((err) => {
@@ -79,7 +79,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log(user);
     userId = user._id;
     popupInfo.setUserInfo(user);
-    popupInfo.updateUserInfo();
     popupInfo.updateAvatar(user);
     console.log(cards);
     cardList.renderItems(cards.reverse());
@@ -102,7 +101,7 @@ const openedEditPopup = new PopupWithForm(popupEditProfile, (item) => {
   api.editUserInfo({ name: item.name, about: item.about })
     .then((res) => {
       popupInfo.setUserInfo(res);
-      popupInfo.updateUserInfo();
+      openedEditPopup.close();
     })
     .catch((err) => {
       console.log(err);
@@ -128,6 +127,7 @@ const openedAddPopup = new PopupWithForm(popupAddCard, (item) => {
   api.addCard({ name: item.place, link: item.link })
     .then((res) => {
       cardList.addItem(createElement(res));
+      openedAddPopup.close();
     })
     .catch((err) => {
       console.log(err);

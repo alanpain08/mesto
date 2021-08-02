@@ -3,25 +3,18 @@ export class UserInfo {
     this._nameSelector = document.querySelector(nameSelector);
     this._aboutSelector = document.querySelector(aboutSelector);
     this._avatarSelector = document.querySelector(avatarSelector);
-    this.name = '';
-    this.about = '';
   }
 
   getUserInfo() {
     return {
-      name: this.name,
-      about: this.about
+      name: this._nameSelector.textContent,
+      about: this._aboutSelector.textContent
     }
   }
 
   setUserInfo({ name, about }) {
-    this.name = name;
-    this.about = about;
-  }
-
-  updateUserInfo() {
-    this._nameSelector.textContent = this.name;
-    this._aboutSelector.textContent = this.about;
+    this._nameSelector.textContent = name;
+    this._aboutSelector.textContent = about;
   }
 
   updateAvatar({avatar}) {

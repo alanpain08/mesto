@@ -5,30 +5,26 @@ export class Api {
     this._headers = headers;
   }
 
+  _checkServerAnswer(res) {
+    if (res.ok) {
+      return res.json()
+    }
+
+    return Promise.reject(`Что-то пошло не так: ${res.status}`)
+  }
+
   getUserInfo() {
     return fetch(`${this._adress}${this._cohort}/users/me`, {
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+      .then((res) => this._checkServerAnswer(res));
   }
 
   getInitialCards() {
     return fetch(`${this._adress}${this._cohort}/cards`, {
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 
   editUserInfo({ name, about }) {
@@ -40,13 +36,7 @@ export class Api {
         about: about
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 
   addCard({ name, link }) {
@@ -58,13 +48,7 @@ export class Api {
         link: link
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 
   putLike(cardId) {
@@ -72,13 +56,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 
   deleteLike(cardId) {
@@ -86,13 +64,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 
   deleteCard(cardId) {
@@ -100,13 +72,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 
   editAvatar({avatar}) {
@@ -117,12 +83,6 @@ export class Api {
         avatar: avatar
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Что-то пошло не так: ${res.status}`)
-      })
+    .then((res) => this._checkServerAnswer(res));
   }
 }
